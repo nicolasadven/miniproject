@@ -249,6 +249,12 @@
             str += '<th style="color:deepskyblue" colspan="3">Kartu Kredit / Debit (' + count + " /4 Tersimpan)</th>";
             for (i = 0; i < data.length; i++) {
                 var hiddenNumber = data[i].cardNumber;
+                var arrayExpired  = data[i].validityPeriod.split("-")
+                // const arrayExpired = $('#validity_period').val().split("/")
+                var monthExpired = arrayExpired[0]
+                var yearExpired =  arrayExpired[1]
+                // var expiredDate = new Date(yearExpired + '-' + monthExpired )
+                var kartu = yearExpired + '/' + monthExpired
 
                 let hiddenNumber2 = hiddenNumber.slice(0, -4);
                 let showNumbers = hiddenNumber.slice(-4);
@@ -257,13 +263,13 @@
 
                 str += "<tr>";
                 str += '<td style="height:20px; text-align:center;">' + allStars + showNumbers + "</td>";
-                str += '<td rowspan="2"><img src="/img/other.png" id="img' + i + '" style="padding:5px;">  </td>';
+                str += '<td rowspan="2"><img src="/static/img/visa.png" id="img' + i + '" style="padding:5px;">  </td>';
                 str += '<td rowspan="2" style="text-align:center;">' + '<button class="btn btn-danger" value="' + data[i].id + '" onclick="Delete(this.value)">Hapus</button>' +
                     '</td>';
             // <input type="button" value="Click me" onclick="msg()">
                 str += "</tr>";
                 str += "<tr>";
-                str += '<td style="text-align:center;">'+ expired + '</td>';
+                str += '<td style="text-align:center;">'+ kartu + '</td>';
                 str += "</tr>";
             }
             str += "</table>";
